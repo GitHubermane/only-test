@@ -8,5 +8,8 @@ dist
 .gitignore
 package.json
 tsconfig.json
+babel.config.js
 
 yarn.lock
+/webpack/*
+.husky/*
