@@ -2,12 +2,10 @@ const webpack = require("webpack");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, "..", "build");
 const PUBLIC_DIR = path.resolve(__dirname, "..", "public");
-const STATIC_DIR = path.resolve(__dirname, "..", "static");
 
 const plugins = [
   new FileManagerPlugin({
@@ -27,10 +25,6 @@ const plugins = [
   //
   new webpack.HotModuleReplacementPlugin(), // For page reloading
 ];
-
-if (process.env.SERVE) {
-  plugins.push(new ReactRefreshWebpackPlugin());
-}
 
 const devServer = {
   historyApiFallback: true, // Apply HTML5 History API if routes are used
@@ -63,6 +57,7 @@ const devServer = {
 };
 
 module.exports = {
+
   devServer,
   plugins,
   entry: path.join(__dirname, "..", "src", "index.tsx"),
@@ -122,9 +117,6 @@ module.exports = {
                 plugins: [
                   [
                     "postcss-preset-env",
-                    {
-                      // Options
-                    },
                   ],
                 ],
               },
